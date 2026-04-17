@@ -1,0 +1,137 @@
+header {
+    background-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 2px;
+    color: rgb(153, 153, 153);
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 25.6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    transition: background, padding, margin, border, transform, box-shadow, opacity, color 0.5s ease;
+    z-index: 20;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+header a.navbar-brand img.logo-mobile {
+    max-height: 103px;
+}
+header a.navbar-brand img.logo-desktop {
+    max-height: 127px;
+}
+
+header .nav-link {
+    color: rgb(174, 0, 0);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.5s;
+}
+
+header .navbar-nav .nav-link.active,
+header .navbar-nav .nav-link:hover {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+header .navbar-nav {
+    flex-wrap: wrap;
+    max-width: 900px;
+    justify-content: center;
+}
+
+header .navbar-nav .nav-item {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+header .navbar-nav .nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: rgb(174, 0, 0);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+}
+
+header .navbar-nav .nav-item:has(.active)::after,
+header .navbar-nav .nav-item:hover::after {
+    transform: scaleX(1);
+}
+
+body {
+    background-color: #7A0B0B;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgb(153, 153, 153);
+    text-align: center;
+    overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+    body {
+        text-align: left;
+    }
+}
+
+footer {
+    color: rgb(174, 0, 0);
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+}
+footer p {
+    line-height: 25.6px;
+    margin-bottom: 5px;
+}
+footer a {
+  color: rgb(2, 110, 159);
+  text-decoration: none;
+  transition: color 0.5s;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Hero Video */
+.hero-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 900px;
+    overflow: hidden;
+}
+
+.hero-video-wrapper video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
+.hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.4;
+}

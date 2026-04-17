@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Biochemistry from './pages/Biochemistry'
+import Header from './components/Header'
+import HeroVideo from './components/HeroVideo'
 import './App.css'
 
 function App() {
@@ -17,9 +19,10 @@ function App() {
 
   return (
     <>
-      <header>
-        <h1>Cellular Alchemy</h1>
-      </header>
+      <div style={{ position: 'relative' }}>
+        <Header />
+        <HeroVideo />
+      </div>
 
       <main>
         <Routes>
@@ -29,7 +32,7 @@ function App() {
         </Routes>
       </main>
 
-      <footer>
+      <footer className="text-center">
         <p>&copy; {new Date().getFullYear()} Cellular Alchemy Rx</p>
         <p><a href="#">Privacy Policy</a></p>
       </footer>

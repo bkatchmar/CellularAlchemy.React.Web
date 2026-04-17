@@ -60,6 +60,9 @@ npm install gh-pages --save-dev
 cellular-alchemy/
 ├── public/
 ├── src/
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   └── HeroVideo.jsx
 │   ├── pages/
 │   │   ├── Home.jsx
 │   │   └── Biochemistry.jsx
@@ -93,6 +96,10 @@ export default defineConfig({
 `HashRouter` is used instead of `BrowserRouter` for compatibility with GitHub Pages, which does not support client-side routing out of the box:
 
 ```jsx
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import App from './App.jsx'
 import { HashRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
@@ -102,10 +109,48 @@ createRoot(document.getElementById('root')).render(
 )
 ```
 
-### `main.jsx` — Bootstrap CSS Import
-```jsx
-import 'bootstrap/dist/css/bootstrap.min.css'
+### Bootstrap JS
+Required for the mobile offcanvas navbar. Added to the bottom of `<body>` in `index.html`:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 ```
+
+---
+
+## Components
+
+### `Header.jsx`
+Located in `src/components/Header.jsx`. Contains:
+- Bootstrap navbar with `navbar-expand-md` — horizontal on desktop, hamburger on mobile
+- Logo centered above nav links, with two sizes for mobile (`103px`) and desktop (`127px`) via Bootstrap responsive classes
+- Mobile offcanvas drawer that slides in from the right via Bootstrap's `offcanvas-end`
+- `OffcanvasLink` — a custom functional component that handles closing the offcanvas and navigating via React Router's `useNavigate`
+- `NavLink` used instead of `Link` for active state detection, with `({ isActive })` className function to handle `HashRouter` compatibility
+- Active nav item shows white text and a red `3px` underline indicator matching the live site
+
+### `HeroVideo.jsx`
+Located in `src/components/HeroVideo.jsx`. Contains:
+- Full width autoplaying, looping, muted background video
+- Dark overlay (`black` at `0.4` opacity) over the video
+- Poster/fallback image for when video cannot load
+- `900px` tall, sits at the top of every page
+- Header floats over the video via `position: absolute` on the header and `position: relative` on the wrapper div in `App.jsx`
+- Video and image assets currently hotlinked from the WordPress site — move to `public/` when WordPress is decommissioned
+
+---
+
+## Routing
+
+Routes are defined in `App.jsx` using React Router. Pages live in `src/pages/`.
+
+| Path | Component |
+|---|---|
+| `/` | `Home.jsx` |
+| `/biochemistry` | `Biochemistry.jsx` |
+| `*` | 404 Not Found |
+
+Additional pages to be added: Biophysics, Nutrition, Practitioners, Consumers, Network, Contact.
 
 ---
 
@@ -130,6 +175,9 @@ In your GitHub repo settings, ensure **Pages** is configured as:
 - This site is a temporary home while a permanent hosting solution is determined.
 - The project is a rebuild of the original Cellular Alchemy WordPress site.
 - URLs use hash-based routing e.g. `/#/biochemistry` due to GitHub Pages limitations.
+- Logo image is currently hotlinked from the WordPress site. When that goes away, download and store in `public/` and update the `src` accordingly.
+- Font used throughout is **Montserrat** — ensure it is loaded via Google Fonts in `index.html`.
+- Bootstrap's active color is overridden in `App.css` with increased specificity to match brand colors.
 
 ---
 
